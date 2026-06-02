@@ -1,16 +1,60 @@
-node_modules/
-.env
-.env.local
-.DS_Store
-venv/
+# Python 
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+.Python
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node (tidak dipakai, jaga-jaga)
+node_modules/
 dist/
 build/
 .next/
 
-# Gabole ada
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Claude Code
 CLAUDE.md
 .CLAUDE
+.claude/
 
+# Model weights (terlalu besar — download via Google Drive, lihat model/readme.md)
+model/*/model.safetensors
+model/*/pytorch_model.bin
+model/*/pytorch_model.bin.index.json
+model/*/model.safetensors.index.json
+model/_backup/
+
+# Dataset raw (terlalu besar — download dari sumber asli, lihat README.md)
+dataset/indosum/*.jsonl
+dataset/nusax/
+
+# Generated data (di-generate ulang via notebook/text_conversion.ipynb)
+data/*.parquet
+
+# Output evaluasi (di-generate ulang via notebook/inference.ipynb)
+outputs/
+
+# Jupyter 
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Misc 
 Proposal_Final_Project_NLP_Group2.pdf
