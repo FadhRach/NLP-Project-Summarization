@@ -2,14 +2,16 @@
 
 **Abstractive Summarization of Indonesian Regional Dialects for Local Governance**
 
-BINUS School of Computer Science — NLP Final Project, Semester 4, Group 2  
+BINUS School of Computer Science - NLP Final Project, Semester 4, Group 2  
 Bintang · Dian · Fadhlan
 
 ---
 
 ## Latar Belakang
 
-Indonesia memiliki lebih dari 700 bahasa daerah. Laporan pengaduan warga sering disampaikan dalam dialek lokal (Jawa, Sunda, Minangkabau, dll.) yang sulit diproses oleh sistem birokrasi formal yang hanya memahami Bahasa Indonesia baku. Proyek ini membangun pipeline **Two-Stage Dialect Bridge** yang mengonversi teks pengaduan dialek menjadi ringkasan Bahasa Indonesia baku secara otomatis.
+Indonesia memiliki lebih dari 700 bahasa daerah. Laporan pengaduan warga sering kali disampaikan dalam dialek lokal (Jawa, Sunda, Minangkabau, dll.), sehingga menciptakan hambatan komunikasi bagi sistem birokrasi formal yang beroperasi secara eksklusif menggunakan Bahasa Indonesia baku. Di sisi lain, memproses data pengaduan masyarakat yang bersifat sensitif melalui layanan cloud pihak ketiga rentan terhadap risiko pelanggaran privasi, ditambah dengan tantangan infrastruktur internet di daerah pelosok.
+
+Untuk mengatasi hal tersebut, proyek ini membangun Sovereign Dialect-Bridge, sebuah pipeline Two-Stage berbasis offline Small Language Models (SLMs). Sistem ini bekerja secara lokal untuk menerjemahkan teks pengaduan dialek dan merangkumnya menjadi laporan Bahasa Indonesia baku secara otomatis, memastikan aksesibilitas birokrasi sekaligus menjaga kedaulatan dan privasi data warga.
 
 ---
 
@@ -102,10 +104,12 @@ cd sovereign-dialect-bridge
 ### 2. Download dataset mentah
 
 **IndoSum** — letakkan di `dataset/indosum/`:
+
 - Download dari: [https://github.com/kata-ai/indosum](https://github.com/kata-ai/indosum)
 - File yang dibutuhkan: `train.01.jsonl`, `dev.01.jsonl`, `test.01.jsonl`
 
 **NusaX-MT** — letakkan di `dataset/nusax/datasets/mt/`:
+
 - Download dari: [https://github.com/IndoNLP/nusax](https://github.com/IndoNLP/nusax)
 - File yang dibutuhkan: `train.csv`, `valid.csv`, `test.csv`
 
@@ -113,7 +117,7 @@ cd sovereign-dialect-bridge
 
 Unduh dari Google Drive dan letakkan di `model/`:
 
-[https://drive.google.com/drive/folders/1dOkmJI__dfwsAJXDyqMSqTqlS94KnaBw?usp=sharing](https://drive.google.com/drive/folders/1dOkmJI__dfwsAJXDyqMSqTqlS94KnaBw?usp=sharing)
+[https://drive.google.com/drive/folders/1dOkmJI\_\_dfwsAJXDyqMSqTqlS94KnaBw?usp=sharing](https://drive.google.com/drive/folders/1dOkmJI__dfwsAJXDyqMSqTqlS94KnaBw?usp=sharing)
 
 Lihat `model/readme.md` untuk instruksi lengkap dan struktur folder yang diharapkan.
 
@@ -138,12 +142,12 @@ pip install pandas pyarrow fastparquet matplotlib seaborn
 
 ### 5. Jalankan notebook (urutan wajib)
 
-| Urutan | Notebook | Input | Output | Estimasi |
-|--------|----------|-------|--------|----------|
-| 1 | `text_conversion.ipynb` | `dataset/indosum/*.jsonl` | `data/*.parquet` | ~10 menit (CPU) |
-| 2 | `training_normalizer.ipynb` | `dataset/nusax/` + online HF | `model/normalizer/` | ~45 menit (GPU) |
-| 3 | `training_sum.ipynb` | `data/train.parquet` | `model/mt5base/`, `model/indot5/` | ~2.5 jam (GPU) |
-| 4 | `inference.ipynb` | semua model + `data/test.parquet` | `outputs/final_results.json` | ~45 menit (GPU) |
+| Urutan | Notebook                    | Input                             | Output                            | Estimasi        |
+| ------ | --------------------------- | --------------------------------- | --------------------------------- | --------------- |
+| 1      | `text_conversion.ipynb`     | `dataset/indosum/*.jsonl`         | `data/*.parquet`                  | ~10 menit (CPU) |
+| 2      | `training_normalizer.ipynb` | `dataset/nusax/` + online HF      | `model/normalizer/`               | ~45 menit (GPU) |
+| 3      | `training_sum.ipynb`        | `data/train.parquet`              | `model/mt5base/`, `model/indot5/` | ~2.5 jam (GPU)  |
+| 4      | `inference.ipynb`           | semua model + `data/test.parquet` | `outputs/final_results.json`      | ~45 menit (GPU) |
 
 > Hardware target: **vast.ai RTX 3090/4090**, 24 GB VRAM, bf16, Python 3.10+
 
@@ -161,12 +165,12 @@ Buka browser di `http://localhost:8501`. Semua model di-load otomatis dengan pro
 
 ## Metode yang Diimplementasikan
 
-| Metode | Tipe | Model | Keterangan |
-|--------|------|-------|------------|
-| TextRank | Ekstraktif | — | TF-IDF + PageRank, selalu tersedia |
-| NER | Ekstraktif | `cahya/bert-base-indonesian-NER` | Prioritas kalimat berisi entitas penting |
-| mT5-base | Abstraktif | `google/mt5-base` fine-tuned | Baseline multilingual |
-| IndoT5 | Abstraktif | `cahya/t5-base-indonesian-summarization-cased` fine-tuned | Model khusus BI |
+| Metode   | Tipe       | Model                                                     | Keterangan                               |
+| -------- | ---------- | --------------------------------------------------------- | ---------------------------------------- |
+| TextRank | Ekstraktif | —                                                         | TF-IDF + PageRank, selalu tersedia       |
+| NER      | Ekstraktif | `cahya/bert-base-indonesian-NER`                          | Prioritas kalimat berisi entitas penting |
+| mT5-base | Abstraktif | `google/mt5-base` fine-tuned                              | Baseline multilingual                    |
+| IndoT5   | Abstraktif | `cahya/t5-base-indonesian-summarization-cased` fine-tuned | Model khusus BI                          |
 
 ---
 
@@ -181,12 +185,12 @@ Buka browser di `http://localhost:8501`. Semua model di-load otomatis dengan pro
 
 ## Dataset
 
-| Dataset | Sumber | Ukuran | Kegunaan |
-|---------|--------|--------|----------|
-| IndoSum | [Koto et al. 2018](https://arxiv.org/pdf/1810.05334) | ~14K artikel | Training & evaluasi summarizer |
-| NusaX-MT | [Winata et al. 2022](https://arxiv.org/pdf/2205.15960) | 1K x 12 bahasa | Training normalizer + dialect test set |
-| IndonesianNMT | [Exqrch/IndonesianNMT](https://huggingface.co/datasets/Exqrch/IndonesianNMT) | 10K–100K/dialek | Augmentasi data normalizer |
-| IndoNLG MT | [GEM/indonlg](https://huggingface.co/datasets/GEM/indonlg) | ~5–10K/dialek | Data kualitas tinggi normalizer |
+| Dataset       | Sumber                                                                       | Ukuran          | Kegunaan                               |
+| ------------- | ---------------------------------------------------------------------------- | --------------- | -------------------------------------- |
+| IndoSum       | [Koto et al. 2018](https://arxiv.org/pdf/1810.05334)                         | ~14K artikel    | Training & evaluasi summarizer         |
+| NusaX-MT      | [Winata et al. 2022](https://arxiv.org/pdf/2205.15960)                       | 1K x 12 bahasa  | Training normalizer + dialect test set |
+| IndonesianNMT | [Exqrch/IndonesianNMT](https://huggingface.co/datasets/Exqrch/IndonesianNMT) | 10K–100K/dialek | Augmentasi data normalizer             |
+| IndoNLG MT    | [GEM/indonlg](https://huggingface.co/datasets/GEM/indonlg)                   | ~5–10K/dialek   | Data kualitas tinggi normalizer        |
 
 ---
 
