@@ -1,0 +1,64 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Web framework
+# ─────────────────────────────────────────────────────────────────────────────
+Django==4.2.16
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+django-environ==0.11.2
+django-cors-headers==4.4.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Database
+# ─────────────────────────────────────────────────────────────────────────────
+psycopg2-binary==2.9.10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Static files & server
+# ─────────────────────────────────────────────────────────────────────────────
+gunicorn==22.0.0
+whitenoise==6.7.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# File storage (Cloudinary opsional)
+# ─────────────────────────────────────────────────────────────────────────────
+cloudinary==1.41.0
+django-cloudinary-storage==0.3.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# AI / NLP pipeline
+# Total ~3 GB di disk + ~4 GB RAM saat semua model loaded.
+# HF Space CPU free tier (16 GB RAM) cukup. Untuk lokal Mac 8 GB, set
+# NLP_ENABLED=false di .env supaya boot cepat tanpa load model.
+# ─────────────────────────────────────────────────────────────────────────────
+torch==2.4.1                      # CPU inference; pin agar build cache stabil
+transformers==4.45.2              # NLLB + mT5 + NER pipeline
+sentencepiece==0.2.0              # tokenizer untuk mT5 + NLLB
+protobuf==4.25.3                  # dibutuhkan SentencePiece/mT5 tokenizer
+safetensors==0.4.5                # format file model (lebih cepat dari pickle)
+accelerate==1.0.1                 # low_cpu_mem_usage=True saat load model
+huggingface-hub==0.25.1           # auto-download model dari HF Hub
+google-auth==2.35.0               # verifikasi Google ID token untuk login Google
+django-anymail[brevo]==11.1        # Brevo transactional email via API (tanpa IP whitelist)
+
+# Dialect detector (joblib + sklearn-LR + TF-IDF)
+joblib==1.4.2
+scikit-learn==1.9.0                # harus match versi saat dialect_detector.joblib di-train
+
+# TextRank summarizer (fallback kalau mT5 tidak siap)
+networkx==3.3
+numpy==1.26.4                      # pin agar kompatibel dengan torch 2.4
+
+# Translator fallback (kalau NLLB tidak siap atau dialek tidak ada di NLLB)
+deep-translator==1.11.4
+
+# Dialect detector fallback
+langdetect==1.0.9
+
+# Dashboard NLP testing
+rouge-score==0.1.2              # ROUGE-1/2/L untuk evaluasi summarizer
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Testing
+# ─────────────────────────────────────────────────────────────────────────────
+pytest==8.3.3
+pytest-django==4.9.0

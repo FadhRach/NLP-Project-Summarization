@@ -1,0 +1,37 @@
+{
+  "labels": [
+    "ace",
+    "ban",
+    "bbc",
+    "bjn",
+    "bug",
+    "en",
+    "id",
+    "jv",
+    "mad",
+    "min",
+    "nij",
+    "su"
+  ],
+  "label_to_name": {
+    "id": "Bahasa Indonesia",
+    "jv": "Bahasa Jawa",
+    "su": "Bahasa Sunda",
+    "min": "Minangkabau",
+    "ace": "Aceh",
+    "ban": "Bali",
+    "bjn": "Banjar",
+    "bug": "Bugis",
+    "mad": "Madura",
+    "nij": "Ngaju Dayak",
+    "bbc": "Batak Toba",
+    "en": "English"
+  },
+  "train_samples": 5998,
+  "test_accuracy": 0.990415,
+  "test_macro_f1": 0.990423,
+  "cv_macro_f1": 0.972173,
+  "model_size_mb": 5.0,
+  "confidence_threshold_recommended": 0.35,
+  "trained_at": "2026-06-21 12:36:06"
+}

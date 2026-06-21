@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node (tidak dipakai, jaga-jaga)
+node_modules/
+dist/
+build/
+.next/
+
+# Environment variables
+.env
+.env.local
+.env.*
+
+# Claude Code (internal guidance, tidak relevan untuk reviewer)
+CLAUDE.md
+.CLAUDE
+.claude/
+
+# ─── Model weights ──────────────────────────────────────────────────────────
+# File besar — load via HuggingFace Hub atau download dari Google Drive
+# (lihat model/README.md)
+# dialect_detector/ TIDAK diabaikan — 5 MB, dibutuhkan untuk inference lokal
+model/mt5base/
+model/indot5/
+model/indobart/
+model/normalizer/
+
+# ─── Dataset ────────────────────────────────────────────────────────────────
+# IndoSum JSONL raw — terlalu besar (59 MB per file), download dari sumber asli
+dataset/indosum/*.jsonl
+
+# NusaX — disertakan langsung agar dosen bisa review dataset
+# CATATAN: jalankan dulu: rm -rf "dataset/nusax/.git"
+# agar git tidak menganggap ini nested repo/submodule
+dataset/nusax/.git/
+
+# IndoSum parquet — generated dari JSONL, bisa di-regenerate via notebook
+# train.parquet = 29 MB, di bawah limit GitHub tapi tetap dianggap generated data
+dataset/indosum_parque/
+
+# data/ lama (sudah dipindah ke dataset/indosum_parque/)
+data/
+
+# ─── Output & cache ─────────────────────────────────────────────────────────
+outputs/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# ─── Misc ───────────────────────────────────────────────────────────────────
+Proposal_Final_Project_NLP_Group2.pdf
