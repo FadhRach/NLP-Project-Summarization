@@ -14,7 +14,7 @@ Kelompok 2:
 
 Indonesia memiliki lebih dari 700 bahasa daerah. Laporan pengaduan warga sering kali disampaikan dalam dialek lokal (Jawa, Sunda, Minangkabau, dll.), sehingga menciptakan hambatan komunikasi bagi sistem birokrasi formal yang beroperasi secara eksklusif menggunakan Bahasa Indonesia baku. Di sisi lain, memproses data pengaduan masyarakat yang bersifat sensitif melalui layanan cloud pihak ketiga rentan terhadap risiko pelanggaran privasi, ditambah dengan tantangan infrastruktur internet di daerah pelosok.
 
-Untuk mengatasi hal tersebut, proyek ini membangun Sovereign Dialect-Bridge, sebuah pipeline Two-Stage berbasis offline Small Language Models (SLMs). Sistem ini bekerja secara lokal untuk menerjemahkan teks pengaduan dialek dan merangkumnya menjadi laporan Bahasa Indonesia baku secara otomatis, memastikan aksesibilitas birokrasi sekaligus menjaga kedaulatan dan privasi data warga.
+Untuk mengatasi hal tersebut, proyek ini membangun Sovereign Dialect-Bridge, sebuah pipeline Two-Stage pipeline classification translation, dan summarization. Sistem ini bekerja secara lokal untuk menerjemahkan teks pengaduan dialek dan merangkumnya menjadi laporan Bahasa Indonesia baku secara otomatis, memastikan aksesibilitas birokrasi sekaligus menjaga kedaulatan dan privasi data warga.
 
 ---
 
